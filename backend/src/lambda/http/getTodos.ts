@@ -30,6 +30,41 @@ export const handler = middy(
     }
 
     }
+
+    if (todos.length == 0 && userId.length > 0) {
+
+     
+      const noTodo=
+      [
+           {
+
+           "todoId": "",
+           "createdAt": "",
+           "name": "",
+           "dueDate": "",
+           "done": false,
+           "attachmentUrl": ""
+          }
+
+      ]
+      
+    
+
+      return {
+       statusCode: 200,
+        headers: {
+      'Access-Control-Allow-Origin': '*'
+      },
+       body: JSON.stringify({
+      items: noTodo 
+     })
+    }
+
+    }
+
+
+
+
       return {
     statusCode: 404,
     headers: {
