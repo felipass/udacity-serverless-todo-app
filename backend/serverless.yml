@@ -49,6 +49,13 @@ custom:
         version: v1.0.0
         title: Todo API
         description: Todo application
+    models:
+      - name: TodoCreateRequest
+        contentType: application/json
+        schema: ${file(models/create-todo-model.json)}
+      - name: TodoUpdateRequest
+        contentType: application/json
+        schema: ${file(models/update-todo-model.json)}
 
 functions:
   Auth:
@@ -92,9 +99,11 @@ functions:
           cors: true
           authorizer: Auth
           reqValidatorName: RequestBodyValidator
-          request:
-            schemas:
-              application/json: ${file(models/create-todo-model.json)}
+          documentation:
+            summary: Create a new Todo
+            description: Create a new Todo
+            requestModels:
+              'application/json': TodoCreateRequest
 
     iamRoleStatementsInherit: true
     iamRoleStatements:
@@ -114,9 +123,11 @@ functions:
           cors: true
           authorizer: Auth
           reqValidatorName: RequestBodyValidator
-          request:
-            schemas:
-              application/json: ${file(models/update-todo-model.json)}
+          documentation:
+            summary: Update a Todo
+            description: Update a Todo
+            requestModels:
+              'application/json': TodoUpdateRequest
 
     iamRoleStatementsInherit: true
     iamRoleStatements:
